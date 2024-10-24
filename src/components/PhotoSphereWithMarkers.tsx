@@ -94,39 +94,23 @@ const PhotoSphereViewer: React.FC = () => {
       ],
     });
 
-    const markersPlugin = viewer.getPlugin(MarkersPlugin);
+    // const markersPlugin = viewer.getPlugin(MarkersPlugin);
 
-    viewer.addEventListener('click', ({ data }) => {
-      if (!data.rightclick) {
-        markersPlugin.addMarker({
-          id: '#' + Math.random(),
-          position: { yaw: data.yaw, pitch: data.pitch },
-          image: baseUrl + 'pictos/pin-red.png',
-          size: { width: 32, height: 32 },
-          anchor: 'bottom center',
-          tooltip: 'Generated pin',
-          data: {
-            generated: true,
-          },
-        });
-      }
-    });
-
-    markersPlugin.addEventListener(
-      'select-marker',
-      ({ marker, doubleClick, rightClick }) => {
-        if (marker.data?.generated) {
-          if (doubleClick) {
-            markersPlugin.removeMarker(marker);
-          } else if (rightClick) {
-            markersPlugin.updateMarker({
-              id: marker.id,
-              image: baseUrl + 'pictos/pin-blue.png',
-            });
-          }
-        }
-      }
-    );
+    // viewer.addEventListener('click', ({ data }) => {
+    //   if (!data.rightclick) {
+    //     markersPlugin.addMarker({
+    //       id: '#' + Math.random(),
+    //       position: { yaw: data.yaw, pitch: data.pitch },
+    //       image: baseUrl + 'pictos/pin-red.png',
+    //       size: { width: 32, height: 32 },
+    //       anchor: 'bottom center',
+    //       tooltip: 'Generated pin',
+    //       data: {
+    //         generated: true,
+    //       },
+    //     });
+    //   }
+    // });
 
     return () => {
       viewer.destroy();
